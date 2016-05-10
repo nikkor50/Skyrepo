@@ -1,19 +1,44 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
+<section id="main-slider">
+    <div class="owl-carousel">
+        <div class="item" style="background-image: url(multi/images/slider/bg1.jpg);">
+            <div class="slider-inner">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="carousel-content">
+                                <h2><span>Multi</span> is the best Onepage html template</h2>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et  dolore magna incididunt ut labore aliqua. </p>
+                                <a class="btn btn-primary btn-lg" href="#">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--/.item-->
+        <div class="item" style="background-image: url(multi/images/slider/bg2.jpg);">
+            <div class="slider-inner">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="carousel-content">
+                                <h2>Beautifully designed <span>free</span> one page template</h2>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et  dolore magna incididunt ut labore aliqua. </p>
+                                <a class="btn btn-primary btn-lg" href="#">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--/.item-->
+    </div><!--/.owl-carousel-->
+</section><!--/#main-slider-->
 
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Welcome to Spring Web MVC project</title>
-    </head>
-
-    <body>
-        <p>Hello! This is the default welcome page for a Spring Web MVC project.</p>
-        <p><i>To display a different welcome page for this project, modify</i>
-            <tt>index.jsp</tt> <i>, or create your own welcome page then change
-                the redirection in</i> <tt>redirect.jsp</tt> <i>to point to the new
-                welcome page and also update the welcome-file setting in</i>
-            <tt>web.xml</tt>.</p>
-    </body>
-</html>
+<%@ include file="/WEB-INF/pages/html/features.html"%>
+<%@ include file="/WEB-INF/pages/html/service.html"%>
+<%@ include file="/WEB-INF/pages/html/portfolio.html"%>
+<%@ include file="/WEB-INF/pages/html/about.html"%>
+<%@ include file="/WEB-INF/pages/html/workprocess.html"%>
+<!--%@ include file="/WEB-INF/pages/html/team.html"%-->
+<%@ include file="/WEB-INF/pages/html/animatednumbers.html"%>
+<%@ include file="/WEB-INF/pages/html/pricing.html"%>
+<%@ include file="/WEB-INF/pages/html/getintouch.html"%>

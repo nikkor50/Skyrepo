@@ -28,7 +28,7 @@ public class LoginController {
             HttpServletResponse response) throws Exception {
         ModelAndView mav = new ModelAndView();
         System.out.println("Login Controller");
-        mav.setViewName("Signin");
+        mav.setViewName("signin");
         return mav;
     }
     

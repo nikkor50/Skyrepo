@@ -17,25 +17,37 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Web Booking | Welcome Cluster</title>
 
-        <!--link rel="stylesheet" href="static/bootstrap/css/bootstrap.css" media="screen"-->
+    <title>Web Booking | Welcome Multi</title>
 
-        <!-- Bootstrap Core CSS -->
-        <link href="start/css/bootstrap.min.css" rel="stylesheet">
+    <!--link rel="stylesheet" href="static/bootstrap/css/bootstrap.css" media="screen"-->
 
-        <!-- Custom CSS -->
-        <link href="start/css/modern-business.css" rel="stylesheet">
+    <!-- Bootstrap Core CSS -->
+    <link href="multi/css/bootstrap.min.css" rel="stylesheet">
+    <link href="multi/css/main.css" rel="stylesheet">
+    <link href="multi/css/responsive.css" rel="stylesheet">
 
-        <!-- Custom Fonts -->
-        <link href="start/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- Custom CSS -->
+    <link href="multi/css/animate.min.css" rel="stylesheet">
+    <link href="multi/css/owl.carousel.css" rel="stylesheet">
+    <link href="multi/css/owl.transitions.css" rel="stylesheet">
+    <link href="multi/css/prettyPhoto.css" rel="stylesheet">
 
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
+    <!-- Custom Fonts -->
+    <link href="multi/css/font-awesome.min.css" rel="stylesheet">
 
-    </head>
-    <body>
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+
+    <link rel="shortcut icon" href="multi/images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="multi/images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="multi/images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="multi/images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="multi/images/ico/apple-touch-icon-57-precomposed.png">
+
+</head>
+<body id="home" class="homepage">
+    <%@ include file="/WEB-INF/pages/view/PageControl.html"%>
+
