@@ -1,0 +1,30 @@
+
+<!--script   src="https://code.jquery.com/jquery-2.1.4.js"  
+          integrity="sha256-siFczlgw4jULnUICcdm9gjQPZkw/YPDqhQ9+nAOScE4="  
+          crossorigin="anonymous">
+</script>
+<script src="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script-->
+
+<hr>
+
+<!-- Footer -->
+<footer>
+    <div class="row">
+        <div class="col-lg-12">
+            <p>Copyright &copy; Your Website 2014</p>
+        </div>
+    </div>
+</footer>
+
+</div>
+<!-- /.container -->
+
+<!-- jQuery -->
+<script src="start/js/jquery.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="start/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
