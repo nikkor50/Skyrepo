@@ -7,17 +7,17 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <h3 class="thin text-center">Sign in to your account</h3>
-                        <p class="text-center text-muted">Lorem ipsum dolor sit amet, <a href="signup.html">Register</a> adipisicing elit. Quo nulla quibusdam cum doloremque incidunt nemo sunt a tenetur omnis odio. </p>
+                        <p class="text-center text-muted">For new user, please access <a href="signup.html">Register</a> to create a new account. </p>
                         <hr>
 
-                        <form>
+                        <form method="POST">
                             <div class="top-margin">
                                 <label>Username/Email <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control">
+                                <input type="text" name="username" value="test990x" maxlength="100" class="form-control">
                             </div>
                             <div class="top-margin">
                                 <label>Password <span class="text-danger">*</span></label>
-                                <input type="password" class="form-control">
+                                <input type="password" name="password" value="Test780" maxlength="100" class="form-control">
                             </div>
 
                             <hr>

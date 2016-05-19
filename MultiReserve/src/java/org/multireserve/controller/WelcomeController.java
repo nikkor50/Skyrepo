@@ -6,17 +6,19 @@
 package org.multireserve.controller;
 
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Vector;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -27,14 +29,29 @@ import org.springframework.web.servlet.ModelAndView;
 public class WelcomeController {
 
     protected final Log logf = LogFactory.getLog(WelcomeController.class);
+    //private static final Logger logger = LoggerFactory.getLogger(WelcomeController.class);
 
-    @RequestMapping("welcome")
-    public ModelAndView MMaint(HttpServletRequest request,
-            HttpServletResponse response) throws Exception {
-        ModelAndView mav = new ModelAndView();
-        System.out.println("Welcome Controller");
-        mav.setViewName("Welcome");
-        return mav;
+    /**
+     * URI for accessing the "home" page of the web application.
+     * <p/>
+     * Sample usages of isAuthenticated or isRemembered methods from
+     * {@link org.apache.shiro.subject.Subject} can be seen here.
+     * <p/>
+     * Instead of forcing the authc filter on this resource, we handle the
+     * validation of the user in this method. Just to show shiro tools for this.
+     *
+     * @return
+     */
+    //@RequestMapping("welcome")
+    @RequestMapping(value = "/welcome", method = RequestMethod.GET)
+    public ModelAndView MMaint() {
+        //Account account = accountService.getAuthenticatedAccount();
+
+        Map<String, Object> model = new HashMap<>();
+        model.put("account", "NOKIA");
+        logf.info("Welcome Controller");
+        //System.out.println("Welcome Controller");
+        return new ModelAndView("Welcome", model);
     }
 
     @RequestMapping("logout.action")

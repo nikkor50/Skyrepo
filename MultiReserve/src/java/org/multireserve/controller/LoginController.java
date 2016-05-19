@@ -5,13 +5,13 @@
  */
 package org.multireserve.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.multireserve.entity.DefaultAccount;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -20,16 +20,36 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class LoginController {
-    
-        protected final Log logf = LogFactory.getLog(WelcomeController.class);
 
-    @RequestMapping("signin")
-    public ModelAndView MMaint(HttpServletRequest request,
-            HttpServletResponse response) throws Exception {
-        ModelAndView mav = new ModelAndView();
-        System.out.println("Login Controller");
-        mav.setViewName("signin");
-        return mav;
+    protected final Log logf = LogFactory.getLog(WelcomeController.class);
+    //private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+
+    @RequestMapping(value = "/signin", method = RequestMethod.GET)
+    //@RequiresRoles(value = "admin")
+    public ModelAndView MMainSignin() {
+        logf.info("Login Controller -- Sign in");
+        return new ModelAndView("signin");
     }
-    
+
+    @RequestMapping(value = "/signin", method = RequestMethod.POST)
+    //@RequiresRoles(value = "admin")
+    public ModelAndView MMainSigninPOST(@ModelAttribute("account") DefaultAccount account) {
+
+        String username = account.getUsername();
+        String givenName = account.getGivenName();
+        String password = account.getPassword();
+
+        logf.info("Login Controller: account {}" + username);
+        logf.info("Login Controller: account password {}" + password);
+
+        return new ModelAndView("redirect:/welcome.action");
+    }
+
+    @RequestMapping(value = "/signup", method = RequestMethod.GET)
+    //@RequiresRoles(value = "admin")
+    public ModelAndView MMainSignup() {
+        logf.info("Login Controller -- Sign Up");
+        return new ModelAndView("signup");
+    }
+
 }
