@@ -5,9 +5,14 @@
  */
 package org.multireserve.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.multireserve.entity.DefaultAccount;
+import org.multireserve.service.URLUserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,10 +29,23 @@ public class LoginController {
     protected final Log logf = LogFactory.getLog(WelcomeController.class);
     //private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
+    @Autowired
+    private URLUserService urluserDAO;
+
     @RequestMapping(value = "/signin", method = RequestMethod.GET)
     //@RequiresRoles(value = "admin")
     public ModelAndView MMainSignin() {
-        logf.info("Login Controller -- Sign in");
+        logf.info("######Login Controller -- Sign in");
+
+        List<Map<String, Object>> list = urluserDAO.UrlUserDataQuery();
+
+        logf.info("#### -- " + list.size());
+
+        for (int i = 0; i < list.size(); i++) {
+            String username = list.get(i).get("USERNAME").toString();
+            logf.info("Url User Data -- " + username);
+        }
+
         return new ModelAndView("signin");
     }
 
@@ -36,7 +54,6 @@ public class LoginController {
     public ModelAndView MMainSigninPOST(@ModelAttribute("account") DefaultAccount account) {
 
         String username = account.getUsername();
-        String givenName = account.getGivenName();
         String password = account.getPassword();
 
         logf.info("Login Controller: account {}" + username);

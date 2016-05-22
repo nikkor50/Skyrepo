@@ -10,6 +10,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Vector;
+import java.text.DateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -44,12 +47,18 @@ public class WelcomeController {
      */
     //@RequestMapping("welcome")
     @RequestMapping(value = "/welcome", method = RequestMethod.GET)
-    public ModelAndView MMaint() {
+    public ModelAndView MMaint(Locale locale) {
         //Account account = accountService.getAuthenticatedAccount();
+
+        logf.info("Welcome home! the client locale is " + locale.toString());
+
+        Date date = new Date();
+        DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+        String formattedDate = dateFormat.format(date);
 
         Map<String, Object> model = new HashMap<>();
         model.put("account", "NOKIA");
-        logf.info("Welcome Controller");
+        logf.info(formattedDate + "@Welcome Controller");
         //System.out.println("Welcome Controller");
         return new ModelAndView("Welcome", model);
     }
