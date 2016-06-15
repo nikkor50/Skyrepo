@@ -21,13 +21,13 @@
     
     <context:property-placeholder location="classpath:config.properties"></context:property-placeholder>
 
-    <mvc:interceptors>
+<!--    <mvc:interceptors>
         <bean class="org.multireserve.interceptor.LoginInterceptor" />
-    </mvc:interceptors>
+    </mvc:interceptors>-->
     
     <bean id="messageSource"
-        class="org.springframework.context.support.ResourceBundleMessageSource"
-        p:basename="Messages">
+          class="org.springframework.context.support.ResourceBundleMessageSource"
+          p:basename="Messages">
     </bean>
 
     <!--bean id="propertyConfigurer"
@@ -52,12 +52,13 @@
         <property name="packagesToScan" value="org.multireserve"></property>
     </bean>
 
-    <bean id="transactionManager"
-          class="org.springframework.orm.hibernate4.HibernateTransactionManager"
-          p:sessionFactory-ref="sessionFactory">
-    </bean>
 
     <tx:annotation-driven transaction-manager="transactionManager"></tx:annotation-driven>
+    
+    <bean id="transactionManager"
+              class="org.springframework.orm.hibernate4.HibernateTransactionManager"
+              p:sessionFactory-ref="sessionFactory">
+    </bean>
 
     <!-- ADD PERSISTENCE SUPPORT HERE (jpa, hibernate, etc) -->
     

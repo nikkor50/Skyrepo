@@ -42,7 +42,7 @@ public class LoginController {
         logf.info("#### -- " + list.size());
 
         for (int i = 0; i < list.size(); i++) {
-            String username = list.get(i).get("USERNAME").toString();
+            String username = list.get(i).get("username").toString();
             logf.info("Url User Data -- " + username);
         }
 
