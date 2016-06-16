@@ -34,19 +34,28 @@
     class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
     p:location="/WEB-INF/jdbc.properties" /-->
 
-    <bean id="dataSource"
+<!--    <bean id="dataSource"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource"
           p:driverClassName="${jdbc.driverClassName}"   p:url="${jdbc.url}"
           p:username="${jdbc.username}"
-          p:password="${jdbc.password}" />
+          p:password="${jdbc.password}" />-->
     
     <!--bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean" -->
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"></property>
         <property name="hibernateProperties">
             <props>
-                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
-                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+                <!-- SQL dialect -->
+                <prop key="hibernate.dialect">${hibernate.hsqldialect}</prop>
+                
+                <!-- Echo all executed SQL to stdout -->
+                <prop key="hibernate.show_sql">true</prop>
+                
+                <!-- JDBC connection pool -->
+                <prop key="connection.pool_size">10</prop>
+                
+                <!-- Enable hibernate automatic session context management -->
+                <prop key="current_session_context_class">thread</prop>
             </props>
         </property>
         <property name="packagesToScan" value="org.multireserve"></property>

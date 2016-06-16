@@ -22,6 +22,8 @@
           p:prefix="/WEB-INF/pages/jsp/" p:suffix=".jsp">
     </bean>
     
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"></bean> 
+    
     <bean id="multipartResolver"
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <!-- set the max upload size100MB -->

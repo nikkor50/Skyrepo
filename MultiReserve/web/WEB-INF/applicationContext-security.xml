@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<b:beans xmlns="http://www.springframework.org/schema/security" 
+         xmlns:b="http://www.springframework.org/schema/beans" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="
+            http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd
+            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd"> 
+    
+    <!-- spring securit 3.X新的资源放行配置方式，不受保护的资源 -->                   
+<!--    <http pattern="/redirect.jsp" security="none"/>
+    <http pattern="/signin.html" security="none"/>  
+    <http pattern="/welcome.html" security="none"/> 
+    <http pattern="/view/403.html" security="none"/> -->
+     
+    <http pattern="/**/*.jpg" security="none"/>              
+    <http pattern="/**/*.png" security="none"/>              
+    <http pattern="/**/*.gif" security="none"/> 
+    <http pattern="/**/*.ico" security="none"/>              
+    <http pattern="/**/*.css" security="none"/> 
+    <http pattern="/**/*.js" security="none"/>       
+    
+    <!-- enable use-expressions use-expressions="true"-->
+    <http auto-config="true" > 
+        <!-- 允许访问的uri --> 
+        <intercept-url pattern="/welcome.html" access="hasRole('ROLE_ANONYMOUS')" />  
+        <intercept-url pattern="/redirect.jsp" access="hasRole('ROLE_ANONYMOUS')" />  
+        <intercept-url pattern="/signin.html" access="hasRole('ROLE_ANONYMOUS')" />    
+        <intercept-url pattern="/view/403.html" access="hasRole('ROLE_ANONYMOUS')" />   
+        <intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
+        
+        <!-- 登陆页面配置 --> 
+        <form-login login-page="/signin.html" 
+                    default-target-url="/welcome.html" 
+                    authentication-failure-url="/signin?error=true"
+                    username-parameter="username"
+                    password-parameter="password" /> 
+        <logout logout-success-url="/signin?logout"  />
+        <!-- enable csrf protection -->
+        <csrf/>
+        
+        <!-- access denied page -->
+        <access-denied-handler error-page="/view/403" />
+        
+        <session-management>
+            <concurrency-control max-sessions="1" error-if-maximum-exceeded="true" />
+        </session-management>
+    </http> 
+    
+    
+<!--    <security:http auto-config="true">
+
+        <security:intercept-url pattern="mobile/passwordHint*" access="IS_AUTHENTICATED_ANONYMOUSLY,ROLE_ADMIN,ROLE_USER"/>
+        <security:intercept-url pattern="mobile/signup*" access="IS_AUTHENTICATED_ANONYMOUSLY,ROLE_USER,ROLE_ADMIN"/>
+        <security:intercept-url pattern="mobile/login.htm" access="IS_AUTHENTICATED_ANONYMOUSLY,ROLE_USER,ROLE_ADMIN"/>
+        <security:intercept-url pattern="mobile/home.htm" access="ROLE_USER,ROLE_ADMIN"/>
+        <security:intercept-url pattern="mobile/changepwd.htm" access="IS_AUTHENTICATED_ANONYMOUSLY,ROLE_USER,ROLE_ADMIN"/>
+        <security:intercept-url pattern="mobile/pwd.htm*" access="IS_AUTHENTICATED_ANONYMOUSLY,ROLE_USER,ROLE_ADMIN" />
+        <security:intercept-url pattern="mobile/favicon.ico" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+        <security:intercept-url pattern="mobile/**" access="ROLE_USER,ROLE_ADMIN"/>
+        <security:form-login login-page="/mlogin.htm" authentication-success-handler-ref="customHandler"
+                             authentication-failure-url="/mlogin.htm?error=true" default-target-url="/mhome.htm"
+                             login-processing-url="/j_spring_security_check"  />
+        <security:remember-me user-service-ref="userDAO" key="e37f4b31-0c45-11dd-bd0b-0800200c9a66"/>
+    </security:http>-->
+    
+<!--    <b:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+            <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <b:property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <b:property name="url" value="jdbc:mysql://192.168.1.127:3306/macbookdb?zeroDateTimeBehavior=convertToNull"/>
+        <b:property name="username" value="tomcat"/>
+        <b:property name="password" value="tomcat"/>
+    </b:bean>-->
+    
+    <b:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <!--    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">-->
+        <b:property name="driverClassName" value="org.hsqldb.jdbcDriver"/>
+        <b:property name="url" value="${hsql.jdbc.url}"/>
+        <b:property name="username" value="${hsql.jdbc.username}"/>
+        <b:property name="password" value="${hsql.jdbc.password}"/>
+    </b:bean>
+
+    <!-- 权限管理者 -->     
+    <authentication-manager> 
+        <!--权限提供者  -->  
+        <authentication-provider> 
+            <!--可提供登陆访问的用户  -->  
+            <!--            <user-service> 
+                <user name="haha" password="haha" authorities="ROLE_USER, ROLE_ADMIN" /> 
+                <user name="xixi" password="xixi" authorities="ROLE_USER" /> 
+            </user-service> -->
+
+ 
+            <jdbc-user-service data-source-ref="dataSource"
+                               users-by-username-query="select username,password, enabled from users where username=? "
+                               authorities-by-username-query="select username, role from user_roles where username =? " />
+            <!--            <authentication-provider user-service-ref="skUserDetailsService" >
+            <password-encoder hash="bcrypt" />   -->
+        
+        </authentication-provider> 
+    </authentication-manager>
+
+</b:beans>
